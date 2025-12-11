@@ -1,0 +1,24 @@
+import { Input } from "@/components/ui/input";
+import { forwardRef } from "react";
+
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+}
+
+const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
+  ({ label, className, ...props }, ref) => {
+    return (
+      <Input
+        ref={ref}
+        className={`bg-card border-0 rounded-lg p-3 h-12 text-base placeholder:text-muted-foreground ${className || ""}`}
+        placeholder={label}
+        data-testid={`input-${props.name || props.type || "text"}`}
+        {...props}
+      />
+    );
+  }
+);
+
+FormInput.displayName = "FormInput";
+
+export default FormInput;
